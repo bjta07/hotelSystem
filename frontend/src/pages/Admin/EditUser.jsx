@@ -13,6 +13,7 @@ const EditUser = () => {
   const eliminarUsuario = (id) => {
     console.log(`Eliminar usuario con ID: ${id}`)
   }
+  console.log('componente EditUser montado')
 
   return (
     <div>

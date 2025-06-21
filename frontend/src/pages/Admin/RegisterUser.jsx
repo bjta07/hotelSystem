@@ -17,6 +17,7 @@ const RegisterUser = () => {
     e.preventDefault()
     console.log('Registrar usuario:', form)
   }
+  console.log('Componente RegisterUser montado')
 
   return (
     <div>

@@ -1,25 +1,25 @@
 import { useLocation } from 'react-router-dom'
-import AppRoutes from './routes'
-import Navbar from './components/Navbar'
-import { useAuth } from './context/AuthContext'
+import { useAuth } from './context/AuthContext.jsx'
+import Navbar from './components/Navbar.jsx'
+import AppRoutes from './Routes.jsx' // Ajusta la ruta según tu estructura
 
-const App = () => {
-  const location = useLocation()
+function App() {
   const { user } = useAuth()
+  const location = useLocation()
 
-  // Ocultar Navbar si está en /login o no hay usuario autenticado
+  // Verifica si estamos en login o aún no hay usuario
   const hideNavbar = location.pathname === '/login' || !user
 
   return (
     <div style={{ display: 'flex' }}>
-      {!hideNavbar && <Navbar />}
-      <div
-        style={{
-          flex: 1,
-          padding: '1rem',
-          marginLeft: !hideNavbar ? '220px' : '0',
-        }}
-      >
+      {/* Mostrar el navbar solo si hay usuario autenticado */}
+      {!hideNavbar && (
+        <div style={{ width: '220px', flexShrink: 0 }}>
+          <Navbar />
+        </div>
+      )}
+
+      <div style={{ flexGrow: 1, padding: '1rem' }}>
         <AppRoutes />
       </div>
     </div>

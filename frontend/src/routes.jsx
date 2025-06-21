@@ -8,6 +8,8 @@ import Reservas from './pages/User/Reservas'
 import Pedidos from './pages/User/Pedidos'
 import Informes from './pages/User/Informes'
 import ProtectedRoute from './components/ProtectedRoute'
+import AdminLayout from './layout/AdminLayout'
+import UserLayout from './layout/UserLayout'
 
 const AppRoutes = () => {
   return (
@@ -16,62 +18,56 @@ const AppRoutes = () => {
         path='/login'
         element={<Login />}
       />
+
+      {/* ADMIN ROUTES */}
       <Route
         path='/admin'
         element={
-          <ProtectedRoute role='admin'>
-            <AdminDashboard />
+          <ProtectedRoute role={1}>
+            <AdminLayout />
           </ProtectedRoute>
         }
-      />
-      <Route
-        path='/admin/register'
-        element={
-          <ProtectedRoute role='admin'>
-            <RegisterUser />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path='/admin/edit/:id'
-        element={
-          <ProtectedRoute role='admin'>
-            <EditUser />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route
+          index
+          element={<AdminDashboard />}
+        />
+        <Route
+          path='register'
+          element={<RegisterUser />}
+        />
+        <Route
+          path='edit'
+          element={<EditUser />}
+        />
+      </Route>
+
+      {/* USER ROUTES */}
       <Route
         path='/user'
         element={
-          <ProtectedRoute role='user'>
-            <UserDashboard />
+          <ProtectedRoute role={2}>
+            <UserLayout />
           </ProtectedRoute>
         }
-      />
-      <Route
-        path='/user/reservas'
-        element={
-          <ProtectedRoute role='user'>
-            <Reservas />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path='/user/pedidos'
-        element={
-          <ProtectedRoute role='user'>
-            <Pedidos />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path='/user/informes'
-        element={
-          <ProtectedRoute role='user'>
-            <Informes />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route
+          index
+          element={<UserDashboard />}
+        />
+        <Route
+          path='reservas'
+          element={<Reservas />}
+        />
+        <Route
+          path='pedidos'
+          element={<Pedidos />}
+        />
+        <Route
+          path='informes'
+          element={<Informes />}
+        />
+      </Route>
     </Routes>
   )
 }

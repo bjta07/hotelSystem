@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
@@ -6,27 +7,39 @@ const Navbar = () => {
 
   if (!user) return null
 
+  const isAdmin = user.role === 1
+  const isUser = user.role === 2
+
   return (
-    <nav style={{ width: '200px', height: '100vh', position: 'fixed' }}>
-      <ul>
-        {user.role === 'admin' && (
+    <nav
+      style={{
+        width: '220px',
+        height: '100vh',
+        background: '#f0f0f0',
+        padding: '1rem',
+        boxSizing: 'border-box',
+        position: 'fixed',
+        left: 0,
+        top: 0,
+      }}
+    >
+      <h3>Panel</h3>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {isAdmin && (
           <>
             <li>
-              <Link to='/admin'>Dashboard Admin</Link>
+              <Link to='/admin'>Dashboard</Link>
             </li>
             <li>
-              <Link to='/admin/register'>Registrar Usuario</Link>
+              <Link to='/admin/edit'>Editar usuarios</Link>
             </li>
             <li>
-              <Link to='/admin/edit/:id'>Editar Usuario</Link>
+              <Link to='/admin/register'>Registrar usuario</Link>
             </li>
           </>
         )}
-        {user.role === 'user' && (
+        {isUser && (
           <>
-            <li>
-              <Link to='/user'>Inicio Usuario</Link>
-            </li>
             <li>
               <Link to='/user/reservas'>Reservas</Link>
             </li>
@@ -39,7 +52,19 @@ const Navbar = () => {
           </>
         )}
         <li>
-          <button onClick={logout}>Cerrar sesión</button>
+          <button
+            onClick={logout}
+            style={{
+              marginTop: '1rem',
+              padding: '6px 12px',
+              background: '#c00',
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Cerrar sesión
+          </button>
         </li>
       </ul>
     </nav>

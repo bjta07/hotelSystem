@@ -1,50 +1,46 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-
   const { login } = useAuth()
-  const navigate = useNavigate()
+  const [form, setForm] = useState({ username: '', password: '' })
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = login({ username, password })
-
-    if (res.success) {
-      navigate(res.role === 'admin' ? '/admin' : '/user')
-    } else {
-      setError(res.message)
-    }
+    await login(form.username, form.password)
   }
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div style={{ maxWidth: '400px', margin: '100px auto' }}>
+      <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Usuario:</label>
-          <input
-            type='text'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type='submit'>Ingresar</button>
+        <input
+          type='text'
+          name='username'
+          placeholder='Usuario'
+          value={form.username}
+          onChange={handleChange}
+          required
+          style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
+        />
+        <input
+          type='password'
+          name='password'
+          placeholder='Contraseña'
+          value={form.password}
+          onChange={handleChange}
+          required
+          style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
+        />
+        <button
+          type='submit'
+          style={{ padding: '10px 20px' }}
+        >
+          Ingresar
+        </button>
       </form>
     </div>
   )
