@@ -7,8 +7,8 @@ const Navbar = () => {
 
   if (!user) return null
 
-  const isAdmin = user.role === 1
-  const isUser = user.role === 2
+  const isAdmin = user.role === 'admin'
+  const isUser = user.role === 'user'
 
   return (
     <nav

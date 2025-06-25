@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/auth/login',
+        'http://localhost:3000/api/users/login',
         {
           username,
           password,
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user)
       localStorage.setItem('token', token)
 
-      if (user.role === 1) {
+      if (user.role === 'admin') {
         navigate('/admin')
       } else {
         navigate('/user')

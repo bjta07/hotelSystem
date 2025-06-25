@@ -1,10 +1,27 @@
-import { Navigate } from 'react-router-dom'
+// src/components/ProtectedRoute.jsx
 import { useAuth } from '../context/AuthContext'
+import { Navigate } from 'react-router-dom'
 
-const ProtectedRoute = ({ children, role }) => {
-  const { user } = useAuth()
+const ProtectedRoute = ({ children, requiredRole = null }) => {
+  const { user, isLoading } = useAuth()
 
-  // Si no está logeado, redirige al login
+  // Si está cargando, mostrar spinner
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <p>Verificando autenticación...</p>
+      </div>
+    )
+  }
+
+  // Si no hay usuario, redirigir al login
   if (!user) {
     return (
       <Navigate
@@ -14,17 +31,15 @@ const ProtectedRoute = ({ children, role }) => {
     )
   }
 
-  // Si se especificó un rol y el usuario no lo tiene, redirige
-  if (role && user.role !== role) {
+  // Si se requiere un rol específico, verificarlo
+  if (requiredRole && user.role !== requiredRole) {
     return (
       <Navigate
-        to='/login'
+        to='/unauthorized'
         replace
       />
     )
   }
-
-  // Si pasa las validaciones, muestra el contenido
   return children
 }
 

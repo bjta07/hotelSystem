@@ -1,52 +1,107 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const RegisterUser = () => {
-  const [form, setForm] = useState({
-    nombre: '',
-    usuario: '',
-    password: '',
+  const [formData, setFormData] = useState({
+    name: '',
+    username: '',
     email: '',
-    telefono: '',
+    password: '',
+    phone: '',
   })
+  const [modal, setModal] = useState({
+    open: false,
+    message: '',
+    success: false,
+  })
+  const [message, setMessage] = useState(null)
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const token = localStorage.getItem('token')
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Registrar usuario:', form)
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/api/users/register',
+        {
+          ...formData,
+          role: 'user', // forzado por defecto
+          isActive: false, // forzado para estar desactivado
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      if (response.data.ok) {
+        setMessage('Usuario registrado con éxito')
+        setFormData({
+          name: '',
+          username: '',
+          email: '',
+          password: '',
+          phone: '',
+        })
+      }
+    } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data.msg || 'Error en el registro')
+      } else {
+        setMessage('Error de conexión con el servidor')
+      }
+    }
   }
-  console.log('Componente RegisterUser montado')
 
   return (
-    <div>
-      <h2>Registrar Nuevo Usuario</h2>
+    <div style={{ maxWidth: '500px', margin: 'auto' }}>
+      <h2>Registrar Usuario</h2>
+      {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <input
-          name='nombre'
-          placeholder='Nombre'
+          type='text'
+          name='name'
+          placeholder='Nombre completo'
+          value={formData.name}
           onChange={handleChange}
+          required
         />
         <input
-          name='usuario'
-          placeholder='Usuario'
+          type='text'
+          name='username'
+          placeholder='Nombre de usuario'
+          value={formData.username}
           onChange={handleChange}
+          required
         />
         <input
+          type='email'
+          name='email'
+          placeholder='Correo electrónico'
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type='password'
           name='password'
           placeholder='Contraseña'
-          type='password'
+          value={formData.password}
           onChange={handleChange}
+          required
         />
         <input
-          name='email'
-          placeholder='Email'
-          onChange={handleChange}
-        />
-        <input
-          name='telefono'
+          type='tel'
+          name='phone'
           placeholder='Teléfono'
+          value={formData.phone}
           onChange={handleChange}
         />
         <button type='submit'>Registrar</button>
