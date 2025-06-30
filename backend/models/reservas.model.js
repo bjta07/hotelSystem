@@ -12,7 +12,8 @@ const reservaSchema = new mongoose.Schema({
   },
   origen: {
     type: String,
-    default: 'whatsapp-bot',
+    default: 'web',
+    enum: ['manual', 'whatsapp-bot', 'web'],
   },
   creadaEn: {
     type: Date,

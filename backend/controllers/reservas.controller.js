@@ -21,9 +21,6 @@ const crearReserva = async (req, res) => {
 
     await nuevaReserva.save()
 
-    // Emitir evento de nueva reserva a los clientes
-    req.io.emit('nueva-reserva', nuevaReserva)
-
     res.status(201).json(nuevaReserva)
   } catch (error) {
     console.error('Error al crear reserva:', error)
@@ -65,9 +62,6 @@ const actualizarEstadoReserva = async (req, res) => {
     if (!reserva) {
       return res.status(404).json({ error: 'Reserva no encontrada' })
     }
-
-    req.io.emit('reserva-actualizada', reserva)
-
     res.json(reserva)
   } catch (error) {
     console.error('Error al actualizar estado de reserva:', error)

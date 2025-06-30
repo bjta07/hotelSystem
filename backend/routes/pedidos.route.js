@@ -25,6 +25,6 @@ router.patch('/:id', actualizarEstadoPedido) // Actualizar estado
 router.put('/:id', actualizarPedidoCompleto) // Actualizar completo
 
 // Si quieres que solo los ADMIN puedan eliminar pedidos, puedes agregar:
-// router.delete('/:id', verifyActiveAdmin, eliminarPedido)
+//router.delete('/:id', verifyActiveAdmin, eliminarPedido)
 
 export default router

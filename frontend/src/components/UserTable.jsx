@@ -15,7 +15,7 @@ const UserTable = ({ columns, data, actions }) => {
         {data.map((item, idx) => (
           <tr key={idx}>
             {columns.map((col, i) => (
-              <td key={i}>{item[col.toLowerCase()]}</td>
+              <td key={i}>{item[col]}</td>
             ))}
             {actions && (
               <td>

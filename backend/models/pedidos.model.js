@@ -25,6 +25,7 @@ const pedidoSchema = new mongoose.Schema({
   origen: {
     type: String,
     default: 'whatsapp-bot',
+    enum: ['whatsapp-bot', 'web', 'manual'],
   },
   fechaCreacion: {
     type: Date,
