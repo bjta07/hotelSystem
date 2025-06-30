@@ -1,0 +1,271 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '614EF147BB73948C1B629815C0897A55',
+    participant: undefined
+  },
+  messageTimestamp: 1751238913,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_67ed9e09-df9b-463e-b1b9-0269ca13b10e',
+  keyword: 'key_3d5bf5b9-67c1-4a16-b231-fa9cf4ed3298',
+  answer: '🙌 Hola bienvenido al asistente virtual del hotel \n' +
+    '🙌 Hello! Welcome to hotel virtual assistant\n' +
+    '                                                       \n' +
+    'Porfavor escribe *Idioma* si quieres cambiar de idioma\n' +
+    'Please, write *Languaje* if you want to chance the languaje',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '734e1bbc00b6bc17f6c1535b0e0ca94b'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '0E274C3268CF1AD49BB25327A26B20D4',
+    participant: undefined
+  },
+  messageTimestamp: 1751238916,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Idioma',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Idioma',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_88fdf7cc-4ab5-4d4c-a9e7-7367ab000930',
+  keyword: 'key_9e5a3e83-cb58-43c7-9f30-08cc24620235',
+  answer: 'Bienvenido, Puedes seleccionar tu idioma preferido\r\n' +
+    'Welcome, you can chance the languaje here\r\n' +
+    '\r\n' +
+    'Selecciona una de las opciones:\r\n' +
+    'Select one option:\r\n' +
+    '\r\n' +
+    'Opcion 1 ----> Español\r\n' +
+    'Option 2 ----> English\r\n' +
+    '\r\n' +
+    'Opcion 0 ----> Salir (exit)',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'a229c8975f8395d1eae5fc5cb9d14448'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '9C0B3E86F2939AE7CA959788CE59ED3D',
+    participant: undefined
+  },
+  messageTimestamp: 1751238919,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '1',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '8CB0C817C281F7535192640242993D9A',
+    participant: undefined
+  },
+  messageTimestamp: 1751238924,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Reserva',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Reserva',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: 'FAF69624BDDE7301E2C215E1D0DB269E',
+    participant: undefined
+  },
+  messageTimestamp: 1751238933,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: '12/07/2025',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '12/07/2025',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_aaa5dd59-8c7e-4a06-a202-d832b6067240',
+  keyword: 'ans_6e92b62f-fe91-4849-a12d-48bd14af186e',
+  answer: '¿A nombre de quién estará la reserva? Por favor, escribe nombres y apellidos:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '63ce5466bdd5ae5511e95c395df194d7'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '85DA8D422B4D70994F3B5E4C5D25B444',
+    participant: undefined
+  },
+  messageTimestamp: 1751238940,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Catelin Jones',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Catelin Jones',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_dc4ea519-1892-414b-952e-61bb683e20b1',
+  keyword: 'ans_aaa5dd59-8c7e-4a06-a202-d832b6067240',
+  answer: '¿Cuántos huéspedes se quedarán?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '7db854d60a569d75511169862ec41ffd'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '3C138C6DCEF1CCC98ABBED8C8879854D',
+    participant: undefined
+  },
+  messageTimestamp: 1751238945,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: '2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '2',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_eec9a77b-6af7-4f2c-9d7e-496f7a4b0e49',
+  keyword: 'ans_dc4ea519-1892-414b-952e-61bb683e20b1',
+  answer: '¿Cuántos días planean quedarse?',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'a7c1e8a322dde9ade44d6556cd326354'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: 'BD6C03D829D580408D5A2219F2008818',
+    participant: undefined
+  },
+  messageTimestamp: 1751238950,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: '3',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: '3',
+  from: '59168249832'
+}

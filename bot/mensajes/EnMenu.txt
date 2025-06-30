@@ -1,0 +1,6 @@
+This is what I can do as a virtual assistant
+
+👉 *Booking* to ask for a reservation hotel
+👉 *Service*  to ask for a room-service
+👉 *Meals*  to ask for lunch or dinner
+👉 *Exit*  to go back to previus menu

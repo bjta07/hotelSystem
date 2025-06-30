@@ -28,7 +28,7 @@ const RegisterUser = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/users/register',
+        'http://localhost:5000/api/users/register',
         {
           ...formData,
           role: 'user', // forzado por defecto

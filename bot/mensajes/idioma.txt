@@ -1,0 +1,10 @@
+Bienvenido, Puedes seleccionar tu idioma preferido
+Welcome, you can chance the languaje here
+
+Selecciona una de las opciones:
+Select one option:
+
+Opcion 1 ----> Español
+Option 2 ----> English
+
+Opcion 0 ----> Salir (exit)

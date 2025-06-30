@@ -18,7 +18,7 @@ const EditUser = () => {
       setError('') // Limpiar errores previos
       const token = localStorage.getItem('token')
 
-      const response = await fetch('http://localhost:3000/api/users', {
+      const response = await fetch('http://localhost:5000/api/users', {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ const EditUser = () => {
       })
 
       // CORRECCIÓN: Usar el mismo puerto (3000)
-      const response = await fetch(`http://localhost:3000/api/users/${uid}`, {
+      const response = await fetch(`http://localhost:5000/api/users/${uid}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -160,7 +160,7 @@ const EditUser = () => {
       })
 
       const response = await fetch(
-        `http://localhost:3000/api/users/${uid}/status`,
+        `http://localhost:5000/api/users/${uid}/status`,
         {
           method: 'PUT',
           headers: {

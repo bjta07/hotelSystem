@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
+import styles from '../styles/login.module.css'
 
 const Login = () => {
   const { login } = useAuth()
@@ -14,26 +15,26 @@ const Login = () => {
   }
 
   return (
-    <div style={{ maxWidth: '400px', margin: '100px auto' }}>
+    <div className={styles.loginContainer}>
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
         <input
+          className={styles.inputLogin}
           type='text'
           name='username'
           placeholder='Usuario'
           value={form.username}
           onChange={handleChange}
           required
-          style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
         />
         <input
+          className={styles.inputLogin}
           type='password'
           name='password'
           placeholder='Contraseña'
           value={form.password}
           onChange={handleChange}
           required
-          style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
         />
         <button
           type='submit'
