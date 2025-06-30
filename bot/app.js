@@ -14,6 +14,11 @@ const { delay } = require('@whiskeysockets/baileys')
 const path = require('path')
 const fs = require('fs')
 const axios = require('axios')
+const {
+  chatWithGPT,
+  chatWithGPTConContexto,
+  crearPromptSistema,
+} = require('./chat')
 
 //Mensajes
 const idiomaPath = path.join(__dirname, 'mensajes', 'idioma.txt')
@@ -259,16 +264,123 @@ const enviarPedidoAlBackend = async (pedido) => {
   }
 }
 
-//Comidas
-const flowComidas = addKeyword(EVENTS.ACTION).addAnswer(
-  'hola este es el flow de comidas'
-)
+//Consultas IA
+const conversacionesIA = new Map()
+
+// Función para obtener o crear historial de conversación
+const obtenerHistorialIA = (userId) => {
+  if (!conversacionesIA.has(userId)) {
+    conversacionesIA.set(userId, [])
+  }
+  return conversacionesIA.get(userId)
+}
+
+// Función para limpiar historial antiguo
+const limpiarHistorialAntiguo = (userId, maxMensajes = 20) => {
+  const historial = conversacionesIA.get(userId)
+  if (historial && historial.length > maxMensajes) {
+    // Mantener solo los últimos mensajes, preservando el system prompt
+    const systemPrompt = historial.find((msg) => msg.role === 'system')
+    const mensajesRecientes = historial.slice(-maxMensajes + 1)
+    if (systemPrompt) {
+      conversacionesIA.set(userId, [systemPrompt, ...mensajesRecientes])
+    } else {
+      conversacionesIA.set(userId, mensajesRecientes)
+    }
+  }
+}
+
+// Flujo de Consultas IA actualizado con memoria
+const flowConsultasIA = addKeyword(EVENTS.ACTION)
+  .addAnswer([
+    '🧠 ¡Hola! Soy tu asistente inteligente del hotel.',
+    '',
+    '💡 Puedes preguntarme sobre:',
+    '• Servicios del hotel',
+    '• Información turística',
+    '• Recomendaciones',
+    '• Cualquier duda que tengas',
+    '',
+    '📝 Comandos útiles:',
+    '• Escribe "menu" para volver al menú principal',
+    '• Escribe "reiniciar" para empezar conversación nueva',
+    '',
+    '¿En qué puedo ayudarte? 😊',
+  ])
+  .addAnswer(
+    '👀 Quedo atento...',
+    { capture: true },
+    async (ctx, { flowDynamic, gotoFlow, fallBack }) => {
+      const userId = ctx.from
+      const mensajeUsuario = ctx.body.toLowerCase().trim()
+
+      // Comandos especiales
+      if (mensajeUsuario === 'menu' || mensajeUsuario === 'menú') {
+        conversacionesIA.delete(userId) // Limpiar historial al salir
+        await flowDynamic('👋 Volviendo al menú principal...')
+        return gotoFlow(idiomaFlow)
+      }
+
+      if (
+        mensajeUsuario === 'reiniciar' ||
+        mensajeUsuario === 'reset' ||
+        mensajeUsuario === 'nuevo'
+      ) {
+        conversacionesIA.delete(userId)
+        await flowDynamic(
+          '🔄 Conversación reiniciada. ¿En qué puedo ayudarte ahora?'
+        )
+        return fallBack()
+      }
+
+      try {
+        // Obtener historial del usuario
+        const historial = obtenerHistorialIA(userId)
+
+        // Si es la primera interacción, agregar el prompt del sistema
+        if (historial.length === 0) {
+          const promptSistema = crearPromptSistema()
+          historial.push({ role: 'system', content: promptSistema })
+        }
+
+        // Agregar mensaje del usuario al historial
+        historial.push({ role: 'user', content: ctx.body })
+
+        // Limpiar historial si es muy largo para evitar costos excesivos
+        limpiarHistorialAntiguo(userId)
+
+        // Obtener respuesta de la IA con todo el contexto
+        const respuestaIA = await chatWithGPTConContexto(historial)
+
+        // Agregar respuesta de la IA al historial
+        historial.push({ role: 'assistant', content: respuestaIA })
+
+        // Enviar respuesta al usuario
+        await flowDynamic(respuestaIA)
+
+        // Mensaje de continuación más discreto
+        await flowDynamic('_¿Algo más en lo que pueda ayudarte?_ 🤔')
+
+        // Continuar el flujo para mantener la conversación activa
+        return fallBack()
+      } catch (error) {
+        console.error('❌ Error en flujo de conversación IA:', error)
+        await flowDynamic([
+          '😅 Disculpa, hubo un problema técnico.',
+          '¿Podrías intentar tu pregunta de nuevo?',
+          '',
+          'Si el problema persiste, escribe "menu" para volver al menú principal.',
+        ])
+        return fallBack()
+      }
+    }
+  )
 
 const menuEspFlow = addKeyword(EVENTS.ACTION).addAnswer(
   EspMenu,
   { capture: true },
   async (ctx, { gotoFlow, fallBack }) => {
-    if (!['Reserva', 'Pedido'].includes(ctx.body)) {
+    if (!['Reserva', 'Pedido', 'Consulta'].includes(ctx.body)) {
       return fallBack('Respuesta no valida, porfavor selecciona una opcion')
     }
     switch (ctx.body) {
@@ -278,6 +390,8 @@ const menuEspFlow = addKeyword(EVENTS.ACTION).addAnswer(
       case 'Pedido':
         return gotoFlow(flowPedidos)
         break
+      case 'Consulta':
+        return gotoFlow(flowConsultasIA)
       case '0':
         return gotoFlow(idiomaFlow)
       default:
@@ -357,9 +471,9 @@ const main = async () => {
     idiomaFlow,
     menuEnFlow,
     menuEspFlow,
-    flowComidas,
     flowPedidos,
     flowReservas,
+    flowConsultasIA,
   ])
   const adapterProvider = createProvider(BaileysProvider)
 

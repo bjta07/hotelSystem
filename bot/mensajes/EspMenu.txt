@@ -2,4 +2,5 @@ Te comparto lo que puedes realizar en este asistente
 
 👉 *Reserva* para realizar una reserva de habitacion
 👉 *Pedido*  para realizar un servicio a la habitacion
+👉 *Consulta*  para realizar consultas
 👉 *salir*  para regresar al menu anterior
