@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import UserTable from '../../components/UserTable'
+import '../../styles/reservasPedidos.css'
 
 const Reservas = () => {
   const [reservas, setReservas] = useState([])
@@ -245,29 +246,13 @@ const Reservas = () => {
       label: '✅ Confirmar',
       onClick: confirmarReserva,
       condition: (reserva) => reserva.estado === 'pendiente',
-      style: {
-        backgroundColor: '#28a745',
-        color: 'white',
-        border: 'none',
-        padding: '0.25rem 0.5rem',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontSize: '0.875rem',
-      },
+      className: 'btnConfirmReserva',
     },
     {
       label: '❌ No Show',
       onClick: marcarNoShow,
       condition: (reserva) => reserva.estado === 'pendiente',
-      style: {
-        backgroundColor: '#dc3545',
-        color: 'white',
-        border: 'none',
-        padding: '0.25rem 0.5rem',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontSize: '0.875rem',
-      },
+      className: 'btnNoShow',
     },
   ]
 
@@ -306,38 +291,17 @@ const Reservas = () => {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '2rem',
-          borderBottom: '2px solid #007bff',
-          paddingBottom: '1rem',
-        }}
-      >
+    <div className='mainContainer'>
+      <div className='separatorContainer'>
         <div>
-          <h1 style={{ color: '#007bff', margin: '0' }}>
-            📋 Reservas del Bot de WhatsApp
-          </h1>
-          <p style={{ margin: '0.5rem 0 0 0', color: '#6c757d' }}>
+          <h1 className='title'>📋 Reservas</h1>
+          <p className='subtitle'>
             📊 Total de reservas pendientes: <strong>{reservas.length}</strong>
           </p>
         </div>
         <button
+          className='btnReserva'
           onClick={() => setMostrarModal(true)}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: '#28a745',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          }}
         >
           ➕ Nueva Reserva
         </button>
@@ -345,170 +309,71 @@ const Reservas = () => {
 
       {/* Modal para crear nueva reserva */}
       {mostrarModal && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '8px',
-              width: '90%',
-              maxWidth: '500px',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-            }}
-          >
+        <div className='modal'>
+          <div className='modalContainer'>
             <h3 style={{ color: '#007bff', marginBottom: '1.5rem' }}>
               ➕ Crear Nueva Reserva
             </h3>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontWeight: 'bold',
-                }}
-              >
-                👤 Nombre del Cliente:
-              </label>
+            <div className='clientTitle'>
+              <label className='clientLabel'>👤 Nombre del Cliente:</label>
               <input
+                className='inputField'
                 type='text'
                 name='nombre'
                 value={formularioReserva.nombre}
                 onChange={manejarCambioFormulario}
-                style={{
-                  width: '100%',
-                  padding: '0.5rem',
-                  border: '1px solid #ced4da',
-                  borderRadius: '4px',
-                  fontSize: '1rem',
-                }}
                 placeholder='Ingrese el nombre completo'
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontWeight: 'bold',
-                }}
-              >
-                📅 Fecha de Reserva:
-              </label>
+            <div className='clientTitle'>
+              <label className='clientLabel'>📅 Fecha de Reserva:</label>
               <input
+                className='inputField'
                 type='date'
                 name='fecha'
                 value={formularioReserva.fecha}
                 onChange={manejarCambioFormulario}
                 min={new Date().toISOString().split('T')[0]}
-                style={{
-                  width: '100%',
-                  padding: '0.5rem',
-                  border: '1px solid #ced4da',
-                  borderRadius: '4px',
-                  fontSize: '1rem',
-                }}
               />
             </div>
 
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1rem',
-                marginBottom: '1rem',
-              }}
-            >
+            <div className='gridContainer'>
               <div>
-                <label
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  👥 Número de Huéspedes:
-                </label>
+                <label className='clientLabel'>👥 Número de Huéspedes:</label>
                 <input
+                  className='inputField'
                   type='number'
                   name='numeroHuespedes'
                   value={formularioReserva.numeroHuespedes}
                   onChange={manejarCambioFormulario}
                   min='1'
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #ced4da',
-                    borderRadius: '4px',
-                    fontSize: '1rem',
-                  }}
                   placeholder='Ej: 2'
                 />
               </div>
 
               <div>
-                <label
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  🏨 Días de Estadía:
-                </label>
+                <label className='clientLabel'>🏨 Días de Estadía:</label>
                 <input
+                  className='inputField'
                   type='number'
                   name='diasEstadia'
                   value={formularioReserva.diasEstadia}
                   onChange={manejarCambioFormulario}
                   min='1'
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #ced4da',
-                    borderRadius: '4px',
-                    fontSize: '1rem',
-                  }}
                   placeholder='Ej: 3'
                 />
               </div>
             </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontWeight: 'bold',
-                }}
-              >
-                📍 Origen (Opcional):
-              </label>
+            <div className='clientTitle'>
+              <label className='clientLabel'>📍 Origen (Opcional):</label>
               <select
+                className='inputField'
                 name='origen'
                 value={formularioReserva.origen}
                 onChange={manejarCambioFormulario}
-                style={{
-                  width: '100%',
-                  padding: '0.5rem',
-                  border: '1px solid #ced4da',
-                  borderRadius: '4px',
-                  fontSize: '1rem',
-                }}
               >
                 <option value='web'>Web</option>
                 <option value='manual'>Manual</option>
@@ -516,37 +381,16 @@ const Reservas = () => {
               </select>
             </div>
 
-            <div
-              style={{
-                display: 'flex',
-                gap: '1rem',
-                justifyContent: 'flex-end',
-              }}
-            >
+            <div className='footer'>
               <button
+                className='cancelBtn'
                 onClick={() => setMostrarModal(false)}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#6c757d',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                }}
               >
                 ❌ Cancelar
               </button>
               <button
+                className='confirmBtn'
                 onClick={crearReserva}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#28a745',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                }}
               >
                 ✅ Crear Reserva
               </button>
@@ -556,50 +400,19 @@ const Reservas = () => {
       )}
 
       {reservas.length === 0 ? (
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '3rem',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '8px',
-            border: '2px dashed #dee2e6',
-          }}
-        >
-          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📋</div>
-          <h3 style={{ color: '#6c757d', margin: '0 0 0.5rem 0' }}>
-            No hay reservas pendientes
-          </h3>
-          <p style={{ color: '#6c757d', margin: '0' }}>
+        <div className='emptyTableContainer'>
+          <div className='emptyContainer'>📋</div>
+          <h3>No hay reservas pendientes</h3>
+          <p>
             Las reservas confirmadas o marcadas como "No Show" se guardan para
             generar informes
           </p>
         </div>
       ) : (
-        <div
-          style={{
-            backgroundColor: 'white',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: '#f8f9fa',
-              padding: '1rem',
-              borderBottom: '1px solid #dee2e6',
-            }}
-          >
-            <h3 style={{ margin: '0', color: '#495057' }}>
-              📊 Lista de Reservas Pendientes
-            </h3>
-            <p
-              style={{
-                margin: '0.5rem 0 0 0',
-                color: '#6c757d',
-                fontSize: '0.9rem',
-              }}
-            >
+        <div className='tableContainer'>
+          <div className='subtitleContainer'>
+            <h3>📊 Lista de Reservas Pendientes</h3>
+            <p>
               💡 Tip: Las reservas confirmadas o marcadas como "No Show" se
               eliminarán de esta vista
             </p>

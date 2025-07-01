@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import UserTable from '../../components/UserTable'
+import '../../styles/reservasPedidos.css'
 
 const Pedidos = () => {
   const [pedidos, setPedidos] = useState([])
@@ -215,44 +216,20 @@ const Pedidos = () => {
       label: 'Confirmar',
       onClick: confirmarPedido,
       condition: (pedido) => pedido.estado === 'pendiente',
-      style: {
-        backgroundColor: '#007bff',
-        color: 'white',
-        padding: '4px 8px',
-        margin: '2px',
-        borderRadius: '4px',
-        border: 'none',
-        cursor: 'pointer',
-      },
+      className: 'btnConfirmReserva',
     },
     {
       label: 'Entregar',
       onClick: entregarPedido,
       condition: (pedido) => pedido.estado === 'confirmado',
-      style: {
-        backgroundColor: '#28a745',
-        color: 'white',
-        padding: '4px 8px',
-        margin: '2px',
-        borderRadius: '4px',
-        border: 'none',
-        cursor: 'pointer',
-      },
+      className: 'btnEntregaReserva',
     },
     {
       label: 'Cancelar',
       onClick: cancelarPedido,
       condition: (pedido) =>
         ['pendiente', 'confirmado'].includes(pedido.estado),
-      style: {
-        backgroundColor: '#dc3545',
-        color: 'white',
-        padding: '4px 8px',
-        margin: '2px',
-        borderRadius: '4px',
-        border: 'none',
-        cursor: 'pointer',
-      },
+      className: 'btnNoShow',
     },
   ]
 
@@ -279,76 +256,33 @@ const Pedidos = () => {
   }
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '2rem',
-        }}
-      >
+    <div className='mainContainer'>
+      <div className='separatorContainer'>
         <div>
-          <h1>Gestión de Pedidos</h1>
-          <p>Total de pedidos: {pedidos.length}</p>
+          <h1 className='title'>📋Gestión de Pedidos</h1>
+          <p className='subtitle'>📊Total de pedidos: {pedidos.length}</p>
         </div>
         <button
+          className='btnReserva'
           onClick={() => setShowCreateForm(true)}
-          style={{
-            padding: '0.75rem 1.5rem',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '16px',
-          }}
         >
-          Crear Nuevo Pedido
+          ➕Crear Nuevo Pedido
         </button>
       </div>
 
       {/* Modal/Formulario para crear pedido */}
       {showCreateForm && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '8px',
-              minWidth: '400px',
-              maxWidth: '500px',
-            }}
-          >
+        <div className='modal'>
+          <div className='modalContainer'>
             <h2>Crear Nuevo Pedido</h2>
             <form onSubmit={crearPedido}>
               <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
-                  Tipo de Pedido:
-                </label>
+                <label className='clientLabel'>Tipo de Pedido:</label>
                 <select
                   name='tipoPedido'
                   value={formData.tipoPedido}
                   onChange={handleInputChange}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                  }}
+                  className='inputField'
                   required
                 >
                   <option value=''>Selecciona un tipo</option>
@@ -360,97 +294,59 @@ const Pedidos = () => {
                 </select>
               </div>
 
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
-                  Detalle del Producto:
-                </label>
+              <div className='clientTitle'>
+                <label className='clientLabel'>Detalle del Producto:</label>
                 <textarea
                   name='detalleProducto'
                   value={formData.detalleProducto}
                   onChange={handleInputChange}
                   placeholder='Ej: Pique Macho, Coca Cola, Toallas adicionales...'
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    minHeight: '80px',
-                  }}
                   required
                 />
               </div>
 
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
-                  Número de Habitación:
-                </label>
+              <div className='clientTitle'>
+                <label className='clientLabel'>Número de Habitación:</label>
                 <input
                   type='number'
                   name='numeroHabitacion'
                   value={formData.numeroHabitacion}
                   onChange={handleInputChange}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                  }}
+                  className='inputField'
                   required
                   min='1'
                   placeholder='Ej: 750'
                 />
               </div>
 
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
-                  Cantidad:
-                </label>
+              <div className='clientTitle'>
+                <label className='clientLabel'>Cantidad:</label>
                 <input
                   type='number'
                   name='cantidad'
                   value={formData.cantidad}
                   onChange={handleInputChange}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                  }}
+                  className='inputField'
                   required
                   min='1'
                 />
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div className='footer'>
                 <button
                   type='button'
                   onClick={() => setShowCreateForm(false)}
-                  style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#6c757d',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                  }}
+                  className='cancelBtn'
                   disabled={submitting}
                 >
-                  Cancelar
+                  ❌Cancelar
                 </button>
                 <button
                   type='submit'
-                  style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#28a745',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: submitting ? 'not-allowed' : 'pointer',
-                    opacity: submitting ? 0.6 : 1,
-                  }}
+                  className='confirmBtn'
                   disabled={submitting}
                 >
-                  {submitting ? 'Creando...' : 'Crear Pedido'}
+                  ✅{submitting ? 'Creando...' : 'Crear Pedido'}
                 </button>
               </div>
             </form>
@@ -459,11 +355,9 @@ const Pedidos = () => {
       )}
 
       {pedidos.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
+        <div className='emptyTableContainer'>
           <p>No hay pedidos disponibles</p>
-          <p style={{ color: '#666', fontSize: '14px' }}>
-            Crea tu primer pedido usando el botón "Crear Nuevo Pedido"
-          </p>
+          <p>Crea tu primer pedido usando el botón "Crear Nuevo Pedido"</p>
         </div>
       ) : (
         <UserTable

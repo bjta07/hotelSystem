@@ -1,0 +1,119 @@
+.Infcontainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Infcontainer h2 {
+  color: #007bff;
+  margin-bottom: 2rem;
+}
+
+.infCard {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.fecha {
+  margin-bottom: 1rem;
+}
+
+.fecha label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.dateInput {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.footerWrap {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footerWrap button {
+  padding: 0.75rem 1.5rem;
+  color: white;
+  border: none;
+  border-radius: '4px';
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footerWrap .btnGenerar {
+  background-color: #007bff;
+}
+
+.footerWrap .btnEstadisticas {
+  background-color: green;
+}
+
+.btnPdf {
+  padding: 0.75rem 1.5rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btnLimpiar {
+  padding: 0.75rem 1.5rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.errorContainer {
+  color: #721c24;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+.infoCard {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.infoCard h3 {
+  color: #155724;
+  margin: 0 0 1rem 0;
+}
+
+.infoCard .infoContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.reservaContainer {
+  margin-bottom: 2rem;
+}
+
+.reservaContainer h3 {
+  color: #007bff;
+}
+
+.reservaContainer h3 p {
+  color: #6c757d;
+  font-style: 'italic';
+}

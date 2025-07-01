@@ -1,0 +1,190 @@
+.mainContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.separatorContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 1rem;
+}
+
+.title {
+  color: #007bff;
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0.5rem 0 0 0;
+  color: #6c757d;
+}
+
+.btnReserva {
+  padding: 0.75rem 1.5rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.clientTitle {
+  margin-bottom: 1rem;
+}
+
+.clientLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.footer button {
+  padding: 0.75rem 1.5rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  background-color: #6c757d;
+}
+
+.confirmBtn {
+  background-color: #28a745;
+}
+
+.tableContainer {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.subtitleContainer {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.subtitleContainer h3 {
+  margin: 0;
+  color: #495057;
+}
+
+.subtitleContainer p {
+  margin: 0.5rem 0 0 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.emptyTableContainer {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+.emptyContainer {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.emptyTableContainer h3 {
+  color: #6c757d;
+  margin: 0 0 0.5rem 0;
+}
+
+.emptyTableContainer p {
+  color: #6c757d;
+  margin: 0;
+}
+
+.btnConfirmReserva {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.btnNoShow {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.clientTitle textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 80px;
+}
+
+.btnEntregaReserva {
+  background-color: #b7f03b;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}

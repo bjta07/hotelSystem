@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import UserTable from '../../components/UserTable'
+import '../../styles/informes.css'
 
 const Informes = () => {
   const [fechaInicio, setFechaInicio] = useState('')
@@ -360,93 +361,45 @@ const Informes = () => {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <h2 style={{ color: '#007bff', marginBottom: '2rem' }}>
-        📊 Generador de Informes
-      </h2>
+    <div className='Infcontainer'>
+      <h2>📊 Informes</h2>
 
-      <div
-        style={{
-          marginBottom: '2rem',
-          padding: '1.5rem',
-          border: '1px solid #dee2e6',
-          borderRadius: '8px',
-          backgroundColor: '#f8f9fa',
-        }}
-      >
-        <div style={{ marginBottom: '1rem' }}>
-          <label
-            style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-            }}
-          >
+      <div className='infCard'>
+        <div className='fecha'>
+          <label>
             📅 Fecha de Inicio:
             <input
               type='date'
               value={fechaInicio}
               onChange={(e) => setFechaInicio(e.target.value)}
-              style={{
-                marginLeft: '0.5rem',
-                padding: '0.5rem',
-                border: '1px solid #ced4da',
-                borderRadius: '4px',
-              }}
+              className='dateInput'
             />
           </label>
 
-          <label
-            style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-            }}
-          >
+          <label>
             📅 Fecha de Fin:
             <input
               type='date'
               value={fechaFin}
               onChange={(e) => setFechaFin(e.target.value)}
-              style={{
-                marginLeft: '0.5rem',
-                padding: '0.5rem',
-                border: '1px solid #ced4da',
-                borderRadius: '4px',
-              }}
+              className='dateInput'
             />
           </label>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <div className='footerWrap'>
           <button
+            className='btnGenerar'
             onClick={generarInforme}
             disabled={loading}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: loading ? '#6c757d' : '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              fontWeight: 'bold',
-            }}
           >
             {loading ? '⏳ Generando...' : '📊 Generar Informe'}
           </button>
 
           <button
+            className='btnEstadisticas'
             onClick={obtenerEstadisticasGenerales}
             disabled={loading}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: loading ? '#6c757d' : '#28a745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              fontWeight: 'bold',
-            }}
           >
             📈 Estadísticas Generales
           </button>
@@ -454,31 +407,15 @@ const Informes = () => {
           {mostrandoInforme && (
             <>
               <button
+                className='btnPdf'
                 onClick={generarPDF}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#dc3545',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                }}
               >
                 📄 Descargar PDF
               </button>
 
               <button
+                className='btnLimpiar'
                 onClick={limpiarInforme}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#6c757d',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                }}
               >
                 🗑️ Limpiar
               </button>
@@ -487,42 +424,13 @@ const Informes = () => {
         </div>
       </div>
 
-      {error && (
-        <div
-          style={{
-            color: '#721c24',
-            marginBottom: '1rem',
-            padding: '1rem',
-            backgroundColor: '#f8d7da',
-            border: '1px solid #f5c6cb',
-            borderRadius: '4px',
-          }}
-        >
-          ❌ {error}
-        </div>
-      )}
+      {error && <div className='errorContainer'>❌ {error}</div>}
 
       {mostrandoInforme && datosInforme && (
         <div>
-          <div
-            style={{
-              backgroundColor: '#d4edda',
-              border: '1px solid #c3e6cb',
-              borderRadius: '4px',
-              padding: '1rem',
-              marginBottom: '2rem',
-            }}
-          >
-            <h3 style={{ color: '#155724', margin: '0 0 1rem 0' }}>
-              📊 Informe Generado Exitosamente
-            </h3>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '1rem',
-              }}
-            >
+          <div className='infoCard'>
+            <h3>📊 Informe Generado Exitosamente</h3>
+            <div className='infoContent'>
               <div>
                 <strong>📅 Período:</strong> {fechaInicio} hasta {fechaFin}
               </div>
@@ -542,14 +450,10 @@ const Informes = () => {
           </div>
 
           {/* Sección de Reservas */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: '#007bff' }}>
-              📋 Reservas ({datosInforme.reservas.length})
-            </h3>
+          <div className='reservaContainer'>
+            <h3>📋 Reservas ({datosInforme.reservas.length})</h3>
             {datosInforme.reservas.length === 0 ? (
-              <p style={{ color: '#6c757d', fontStyle: 'italic' }}>
-                No se encontraron reservas para el período seleccionado
-              </p>
+              <p>No se encontraron reservas para el período seleccionado</p>
             ) : (
               <UserTable
                 columns={columnasReservas.map((col) => col.key)}
@@ -559,14 +463,10 @@ const Informes = () => {
           </div>
 
           {/* Sección de Pedidos */}
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: '#007bff' }}>
-              🛍️ Pedidos ({datosInforme.pedidos.length})
-            </h3>
+          <div className='reservaContainer'>
+            <h3>🛍️ Pedidos ({datosInforme.pedidos.length})</h3>
             {datosInforme.pedidos.length === 0 ? (
-              <p style={{ color: '#6c757d', fontStyle: 'italic' }}>
-                No se encontraron pedidos para el período seleccionado
-              </p>
+              <p>No se encontraron pedidos para el período seleccionado</p>
             ) : (
               <UserTable
                 columns={columnasPedidos.map((col) => col.key)}

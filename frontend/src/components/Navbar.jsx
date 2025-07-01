@@ -1,6 +1,6 @@
-// src/components/Navbar.jsx
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import '../styles/navbar.css'
 
 const Navbar = () => {
   const { user, logout } = useAuth()
@@ -11,20 +11,15 @@ const Navbar = () => {
   const isUser = user.role === 'user'
 
   return (
-    <nav
-      style={{
-        width: '220px',
-        height: '100vh',
-        background: '#f0f0f0',
-        padding: '1rem',
-        boxSizing: 'border-box',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-      }}
-    >
-      <h3>Panel</h3>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <nav className='sidebar'>
+      <div className='sidebar-header'>
+        <h2>Hotel</h2>
+        <span className='subtitle'>Turismo y hoteleria</span>
+      </div>
+      <ul
+        className='sidebar-menu'
+        style={{ listStyle: 'none', padding: 0 }}
+      >
         {isAdmin && (
           <>
             <li>
@@ -54,14 +49,7 @@ const Navbar = () => {
         <li>
           <button
             onClick={logout}
-            style={{
-              marginTop: '1rem',
-              padding: '6px 12px',
-              background: '#c00',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer',
-            }}
+            className='logout-btn'
           >
             Cerrar sesión
           </button>

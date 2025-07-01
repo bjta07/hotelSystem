@@ -15,34 +15,41 @@ const Login = () => {
   }
 
   return (
-    <div className={styles.loginContainer}>
-      <h2>Iniciar sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          className={styles.inputLogin}
-          type='text'
-          name='username'
-          placeholder='Usuario'
-          value={form.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className={styles.inputLogin}
-          type='password'
-          name='password'
-          placeholder='Contraseña'
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-        <button
-          type='submit'
-          style={{ padding: '10px 20px' }}
+    <div className={styles.mainContainer}>
+      <div className={styles.loginContainer}>
+        <h2>Iniciar sesión</h2>
+        <form
+          className={styles.loginCard}
+          onSubmit={handleSubmit}
         >
-          Ingresar
-        </button>
-      </form>
+          <input
+            className={styles.inputLogin}
+            type='text'
+            name='username'
+            placeholder='Usuario'
+            value={form.username}
+            onChange={handleChange}
+            required
+          />
+          <input
+            className={styles.inputLogin}
+            type='password'
+            name='password'
+            placeholder='Contraseña'
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <button
+            className={styles.btnLogin}
+            type='submit'
+            style={{ padding: '10px 20px' }}
+          >
+            Ingresar
+          </button>
+        </form>
+        <footer>Si no tiene una cuenta contacte con el administrador</footer>
+      </div>
     </div>
   )
 }

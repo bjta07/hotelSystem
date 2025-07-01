@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/userTable.css'
 
 const UserTable = ({ columns, data, actions }) => {
   return (
@@ -23,6 +24,7 @@ const UserTable = ({ columns, data, actions }) => {
                   <button
                     key={i}
                     onClick={() => action.onClick(item)}
+                    className={action.className}
                   >
                     {action.label}
                   </button>
