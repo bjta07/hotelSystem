@@ -419,7 +419,7 @@ const Reservas = () => {
           </div>
           <UserTable
             columns={columns}
-            data={reservas}
+            data={reservas.filter((p) => p.estado === 'pendiente')}
             actions={actions}
           />
         </div>
