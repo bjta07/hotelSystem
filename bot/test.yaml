@@ -1,0 +1,23 @@
+config:
+  target: 'http://localhost:5000'
+  phases:
+    - duration: 30
+      arrivalRate: 10
+  payload:
+    path: './datos.csv'
+    fields:
+      - fecha
+      - nombre
+      - numeroHuespedes
+      - diasEstadia
+
+scenarios:
+  - weight: 100
+    flow:
+      - post:
+          url: '/api/bot/reservas'
+          json:
+            fecha: '{{ fecha }}'
+            nombre: '{{ nombre }}'
+            numeroHuespedes: '{{ numeroHuespedes }}'
+            diasEstadia: '{{ diasEstadia }}'

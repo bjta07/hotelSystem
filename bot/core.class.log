@@ -2,10 +2,10 @@
   key: {
     remoteJid: '59168249832@s.whatsapp.net',
     fromMe: false,
-    id: 'CEA9CB790530BEC1A63B088869A252C1',
+    id: 'FD0DCB5D12DF7F32DDED3174D076074B',
     participant: undefined
   },
-  messageTimestamp: 1751314900,
+  messageTimestamp: 1751845874,
   pushName: 'hotel',
   broadcast: false,
   message: Message {
@@ -20,13 +20,12 @@
   from: '59168249832'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_9fab635b-31b2-46f9-ade2-c0b087055ae9',
-  keyword: 'key_0f44e778-3c72-4be3-b244-2b039df8ebc3',
+  ref: 'ans_abab909a-8b70-45ef-98f2-0f3a48ad681f',
+  keyword: 'key_b8e2efbe-5eec-4354-9ca2-97a51ea48124',
   answer: '🙌 Hola bienvenido al asistente virtual del hotel \n' +
-    '🙌 Hello! Welcome to hotel virtual assistant\n' +
     '                                                       \n' +
-    'Porfavor escribe *Idioma* si quieres cambiar de idioma\n' +
-    'Please, write *Languaje* if you want to chance the languaje',
+    '👉Escribe *menu* si quieres acceder al menu de reservas pedidos y consultas\n' +
+    '👉Escribe *salir* si quieres salir del asistente virtual',
   options: {
     media: null,
     buttons: [],
@@ -39,42 +38,153 @@
     keyword: {},
     callback: false
   },
-  refSerialize: 'abe3eb32bc521d20d37e19f733c5e162'
+  refSerialize: 'e24e11a0d1cb9de335064f509d268d88'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '59168249832@s.whatsapp.net',
     fromMe: false,
-    id: '9AAE8BD0E70E701F2A89A516FB9C3DAC',
+    id: '40EE77CAF5DCFE754D88CACBDDBEBF63',
     participant: undefined
   },
-  messageTimestamp: 1751314904,
+  messageTimestamp: 1751845877,
   pushName: 'hotel',
   broadcast: false,
   message: Message {
-    conversation: 'Idioma',
+    conversation: 'Menu',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: 'Idioma',
+  body: 'Menu',
   from: '59168249832'
 }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_feb681a5-650a-41e8-953d-796fb45fe97a',
-  keyword: 'key_2a1d6517-60b6-4359-bf84-446988792dae',
-  answer: 'Bienvenido, Puedes seleccionar tu idioma preferido\r\n' +
-    'Welcome, you can chance the languaje here\r\n' +
-    '\r\n' +
-    'Selecciona una de las opciones:\r\n' +
-    'Select one option:\r\n' +
-    '\r\n' +
-    'Opcion 1 ----> Español\r\n' +
-    'Option 2 ----> English\r\n' +
-    '\r\n' +
-    'Opcion 0 ----> Salir (exit)',
+  ref: 'ans_aa071d70-1618-478f-b38a-bf62c194e028',
+  keyword: 'key_73292741-1912-4c37-835a-4295284e91fd',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3769cdade21b35e9fe672eb4c3169412'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: 'E47B7EC15F1D983B4CB5385CB5AF34EA',
+    participant: undefined
+  },
+  messageTimestamp: 1751845880,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Reserva',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Reserva',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '3EB81754E4B28EFAB0549BB448B3D50C',
+    participant: undefined
+  },
+  messageTimestamp: 1751845886,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Salir',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Salir',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '6FD52EBC9EADE2D0B90D1AD7B31315DA',
+    participant: undefined
+  },
+  messageTimestamp: 1751845891,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: 'ED3674A00485B10E759147889039604F',
+    participant: undefined
+  },
+  messageTimestamp: 1751845900,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_e394abf3-0477-4ecc-8579-ebe19de85eef',
+  keyword: 'key_3e2ac1e4-5ee1-44c7-9d53-eaffcff86ae1',
+  answer: '👋 Gracias por usar nuestro asistente virtual. ¡Que tengas un buen día!',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '492aeabd61aaa42d03c72fe7f0c30339'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_fe913e7f-bf96-4c09-9234-070c45546e38',
+  keyword: 'ans_e9d62ef0-271c-4a05-aa03-8892d65e76fc',
+  answer: '¿A nombre de quién estará la reserva? Por favor, escribe nombres y apellidos:',
   options: {
     media: null,
     buttons: [],
@@ -87,37 +197,298 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'dc568bb12f20ff31371882a5ffede43d'
+  refSerialize: '74be20b07abe6e87c23df0e075afd644'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_abab909a-8b70-45ef-98f2-0f3a48ad681f',
+  keyword: 'key_b8e2efbe-5eec-4354-9ca2-97a51ea48124',
+  answer: '🙌 Hola bienvenido al asistente virtual del hotel \n' +
+    '                                                       \n' +
+    '👉Escribe *menu* si quieres acceder al menu de reservas pedidos y consultas\n' +
+    '👉Escribe *salir* si quieres salir del asistente virtual',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'e24e11a0d1cb9de335064f509d268d88'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_abab909a-8b70-45ef-98f2-0f3a48ad681f',
+  keyword: 'key_b8e2efbe-5eec-4354-9ca2-97a51ea48124',
+  answer: '🙌 Hola bienvenido al asistente virtual del hotel \n' +
+    '                                                       \n' +
+    '👉Escribe *menu* si quieres acceder al menu de reservas pedidos y consultas\n' +
+    '👉Escribe *salir* si quieres salir del asistente virtual',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'e24e11a0d1cb9de335064f509d268d88'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '59168249832@s.whatsapp.net',
     fromMe: false,
-    id: 'DBE6CFF1FE14184D4AA922CB272C9402',
+    id: 'C761DCA34E80F29FBD944337BDBAEF6F',
     participant: undefined
   },
-  messageTimestamp: 1751314906,
+  messageTimestamp: 1751845904,
   pushName: 'hotel',
   broadcast: false,
   message: Message {
-    conversation: '1',
+    conversation: 'Menu',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: '1',
+  body: 'Menu',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_aa071d70-1618-478f-b38a-bf62c194e028',
+  keyword: 'key_73292741-1912-4c37-835a-4295284e91fd',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3769cdade21b35e9fe672eb4c3169412'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '814B5E553ED4E353EB38E042128F008D',
+    participant: undefined
+  },
+  messageTimestamp: 1751845908,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Pedido',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Pedido',
   from: '59168249832'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '59168249832@s.whatsapp.net',
     fromMe: false,
-    id: 'EFA724F7A1CCF5E35FF8FE1EC093FD6D',
+    id: '357E48201920F23D02B17BDC88909E11',
     participant: undefined
   },
-  messageTimestamp: 1751314910,
+  messageTimestamp: 1751845911,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Salir',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Salir',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '47AC15AB42E5A2ABAF6BFC718D1DB51B',
+    participant: undefined
+  },
+  messageTimestamp: 1751845914,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '59168249832'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: 'C27447778350F0A7A13F6A7756ABDB00',
+    participant: undefined
+  },
+  messageTimestamp: 1751845925,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Hola',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_e394abf3-0477-4ecc-8579-ebe19de85eef',
+  keyword: 'key_3e2ac1e4-5ee1-44c7-9d53-eaffcff86ae1',
+  answer: '👋 Gracias por usar nuestro asistente virtual. ¡Que tengas un buen día!',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '492aeabd61aaa42d03c72fe7f0c30339'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_b202fade-16bd-4715-ac2e-992f98262757',
+  keyword: 'ans_a71cff65-a4b1-4f75-a5ee-ee952241e22b',
+  answer: 'Por favor, detalla el producto que deseas pedir:',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '87043e6dc0db40c1ea941cf9c453d971'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_abab909a-8b70-45ef-98f2-0f3a48ad681f',
+  keyword: 'key_b8e2efbe-5eec-4354-9ca2-97a51ea48124',
+  answer: '🙌 Hola bienvenido al asistente virtual del hotel \n' +
+    '                                                       \n' +
+    '👉Escribe *menu* si quieres acceder al menu de reservas pedidos y consultas\n' +
+    '👉Escribe *salir* si quieres salir del asistente virtual',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'e24e11a0d1cb9de335064f509d268d88'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_abab909a-8b70-45ef-98f2-0f3a48ad681f',
+  keyword: 'key_b8e2efbe-5eec-4354-9ca2-97a51ea48124',
+  answer: '🙌 Hola bienvenido al asistente virtual del hotel \n' +
+    '                                                       \n' +
+    '👉Escribe *menu* si quieres acceder al menu de reservas pedidos y consultas\n' +
+    '👉Escribe *salir* si quieres salir del asistente virtual',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: 'e24e11a0d1cb9de335064f509d268d88'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '6853D30ED53562019CE06974A0B6B930',
+    participant: undefined
+  },
+  messageTimestamp: 1751845929,
+  pushName: 'hotel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Menu',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2,
+      messageSecret: [Uint8Array]
+    }
+  },
+  body: 'Menu',
+  from: '59168249832'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_aa071d70-1618-478f-b38a-bf62c194e028',
+  keyword: 'key_73292741-1912-4c37-835a-4295284e91fd',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '3769cdade21b35e9fe672eb4c3169412'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '59168249832@s.whatsapp.net',
+    fromMe: false,
+    id: '93AABE7F0B799209FCA19957B5ACAADD',
+    participant: undefined
+  },
+  messageTimestamp: 1751845932,
   pushName: 'hotel',
   broadcast: false,
   message: Message {
@@ -135,104 +506,41 @@
   key: {
     remoteJid: '59168249832@s.whatsapp.net',
     fromMe: false,
-    id: '53F34C439E6C571F75FD760BDC180ABA',
+    id: '6999DD4A8A64651BD677AE834636E0FB',
     participant: undefined
   },
-  messageTimestamp: 1751314929,
+  messageTimestamp: 1751845956,
   pushName: 'hotel',
   broadcast: false,
   message: Message {
-    conversation: 'Recomienda lugares turísticos en la paz',
+    conversation: 'Servicios del hotel',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: 'Recomienda lugares turísticos en la paz',
+  body: 'Servicios del hotel',
   from: '59168249832'
 }
 [handleMsg]:  {
   key: {
     remoteJid: '59168249832@s.whatsapp.net',
     fromMe: false,
-    id: 'F658EC03E875B6E147AA183C0B7B588D',
+    id: '29DE7C743093CFA70279A2C181B9D68E',
     participant: undefined
   },
-  messageTimestamp: 1751314992,
+  messageTimestamp: 1751846006,
   pushName: 'hotel',
   broadcast: false,
   message: Message {
-    conversation: 'Que servicios tiene el hotel',
+    conversation: 'Salir',
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2,
       messageSecret: [Uint8Array]
     }
   },
-  body: 'Que servicios tiene el hotel',
-  from: '59168249832'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '59168249832@s.whatsapp.net',
-    fromMe: false,
-    id: '5102570F67B1487E95C78A94054A9771',
-    participant: undefined
-  },
-  messageTimestamp: 1751315051,
-  pushName: 'hotel',
-  broadcast: false,
-  message: Message {
-    conversation: 'Menu',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2,
-      messageSecret: [Uint8Array]
-    }
-  },
-  body: 'Menu',
-  from: '59168249832'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '59168249832@s.whatsapp.net',
-    fromMe: false,
-    id: '788DC0B377C47FC8060045895BB7F314',
-    participant: undefined
-  },
-  messageTimestamp: 1751315055,
-  pushName: 'hotel',
-  broadcast: false,
-  message: Message {
-    conversation: '1',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2,
-      messageSecret: [Uint8Array]
-    }
-  },
-  body: '1',
-  from: '59168249832'
-}
-[handleMsg]:  {
-  key: {
-    remoteJid: '59168249832@s.whatsapp.net',
-    fromMe: false,
-    id: 'CC22538930416AC6FE335D16D9D89452',
-    participant: undefined
-  },
-  messageTimestamp: 1751315060,
-  pushName: 'hotel',
-  broadcast: false,
-  message: Message {
-    conversation: 'Pedido',
-    messageContextInfo: MessageContextInfo {
-      deviceListMetadata: [DeviceListMetadata],
-      deviceListMetadataVersion: 2,
-      messageSecret: [Uint8Array]
-    }
-  },
-  body: 'Pedido',
+  body: 'Salir',
   from: '59168249832'
 }

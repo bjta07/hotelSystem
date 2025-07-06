@@ -21,12 +21,6 @@ const {
 } = require('./chat')
 
 //Mensajes
-const idiomaPath = path.join(__dirname, 'mensajes', 'idioma.txt')
-const idioma = fs.readFileSync(idiomaPath, 'utf8')
-
-const EnMenuPath = path.join(__dirname, 'mensajes', 'EnMenu.txt')
-const EnMenu = fs.readFileSync(EnMenuPath, 'utf8')
-
 const EspMenuPath = path.join(__dirname, 'mensajes', 'EspMenu.txt')
 const EspMenu = fs.readFileSync(EspMenuPath, 'utf8')
 
@@ -318,7 +312,7 @@ const flowConsultasIA = addKeyword(EVENTS.ACTION)
       if (mensajeUsuario === 'menu' || mensajeUsuario === 'menú') {
         conversacionesIA.delete(userId) // Limpiar historial al salir
         await flowDynamic('👋 Volviendo al menú principal...')
-        return gotoFlow(idiomaFlow)
+        return gotoFlow(menuEspFlow)
       }
 
       if (
@@ -343,25 +337,17 @@ const flowConsultasIA = addKeyword(EVENTS.ACTION)
           historial.push({ role: 'system', content: promptSistema })
         }
 
-        // Agregar mensaje del usuario al historial
         historial.push({ role: 'user', content: ctx.body })
 
-        // Limpiar historial si es muy largo para evitar costos excesivos
         limpiarHistorialAntiguo(userId)
 
-        // Obtener respuesta de la IA con todo el contexto
         const respuestaIA = await chatWithGPTConContexto(historial)
 
-        // Agregar respuesta de la IA al historial
         historial.push({ role: 'assistant', content: respuestaIA })
 
-        // Enviar respuesta al usuario
         await flowDynamic(respuestaIA)
 
-        // Mensaje de continuación más discreto
         await flowDynamic('_¿Algo más en lo que pueda ayudarte?_ 🤔')
-
-        // Continuar el flujo para mantener la conversación activa
         return fallBack()
       } catch (error) {
         console.error('❌ Error en flujo de conversación IA:', error)
@@ -376,100 +362,53 @@ const flowConsultasIA = addKeyword(EVENTS.ACTION)
     }
   )
 
+// Flujo del menú en español
 const menuEspFlow = addKeyword(EVENTS.ACTION).addAnswer(
   EspMenu,
   { capture: true },
   async (ctx, { gotoFlow, fallBack }) => {
     if (!['Reserva', 'Pedido', 'Consulta'].includes(ctx.body)) {
-      return fallBack('Respuesta no valida, porfavor selecciona una opcion')
+      return fallBack('Respuesta no válida, por favor selecciona una opción')
     }
     switch (ctx.body) {
       case 'Reserva':
         return gotoFlow(flowReservas)
-        break
       case 'Pedido':
         return gotoFlow(flowPedidos)
-        break
       case 'Consulta':
         return gotoFlow(flowConsultasIA)
-      case '0':
-        return gotoFlow(idiomaFlow)
       default:
         break
     }
   }
 )
 
-const menuEnFlow = addKeyword(EVENTS.ACTION).addAnswer(
-  EnMenu,
-  { capture: true },
-  async (ctx, { gotoFlow, fallBack }) => {
-    if (!['Booking', 'Service', 'Meals'].includes(ctx.body)) {
-      return fallBack('Not valid Answer, please select an option')
-    }
-    switch (ctx.body) {
-      case 'Booking':
-        return gotoFlow(flowReservas)
-        break
-      case 'Service':
-        return gotoFlow(flowPedidos)
-        break
-      case 'Meals':
-        return gotoFlow(flowComidas)
-      case '0':
-        return gotoFlow(idiomaFlow)
-      default:
-        break
-    }
+// Flujo principal - Solo mensaje de bienvenida
+const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAnswer([
+  '🙌 Hola bienvenido al asistente virtual del hotel ',
+  '                                                       ',
+  '👉Escribe *menu* si quieres acceder al menu de reservas pedidos y consultas',
+  '👉Escribe *salir* si quieres salir del asistente virtual',
+])
+
+// Flujo para manejar el comando "menu"
+const flowMenu = addKeyword(['menu', 'Menu', 'menú', 'Menú']).addAction(
+  async (ctx, { gotoFlow }) => {
+    return gotoFlow(menuEspFlow)
   }
 )
 
-const idiomaFlow = addKeyword([
-  'Idioma',
-  'languaje',
-  'español',
-  'english',
-  'English',
-  'Español',
-]).addAnswer(
-  idioma,
-  { capture: true },
-  async (ctx, { gotoFlow, fallBack, flowDynamic }) => {
-    if (!['1', '2'].includes(ctx.body)) {
-      return fallBack('Respuesta no valida, porfavor selecciona una opcion')
-    }
-    switch (ctx.body) {
-      case '1':
-        return gotoFlow(menuEspFlow)
-        break
-      case '2':
-        return gotoFlow(menuEnFlow)
-        break
-      case '0':
-        return await flowDynamic('Saliendo del menu...')
-      default:
-        break
-    }
-  }
-)
-
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAnswer(
-  [
-    '🙌 Hola bienvenido al asistente virtual del hotel ',
-    '🙌 Hello! Welcome to hotel virtual assistant',
-    '                                                       ',
-    'Porfavor escribe *Idioma* si quieres cambiar de idioma',
-    'Please, write *Languaje* if you want to chance the languaje',
-  ],
-  [idiomaFlow]
+// Flujo para manejar el comando "salir"
+const flowSalir = addKeyword(['salir', 'Salir', 'exit', 'Exit']).addAnswer(
+  '👋 Gracias por usar nuestro asistente virtual. ¡Que tengas un buen día!'
 )
 
 const main = async () => {
   const adapterDB = new MockAdapter()
   const adapterFlow = createFlow([
     flowPrincipal,
-    idiomaFlow,
-    menuEnFlow,
+    flowMenu,
+    flowSalir,
     menuEspFlow,
     flowPedidos,
     flowReservas,
