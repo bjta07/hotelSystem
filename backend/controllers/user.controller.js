@@ -145,7 +145,8 @@ const profile = async (req, res) => {
 
     return res.json({
       ok: true,
-      msg: {
+      data: {
+        // <-- Cambiar 'msg' por 'data'
         uid: user.uid,
         name: user.name,
         username: user.username,
@@ -163,7 +164,6 @@ const profile = async (req, res) => {
     })
   }
 }
-
 // Ruta protegida - Solo ADMIN y no puede cambiar su propio rol
 const updateRole = async (req, res) => {
   try {

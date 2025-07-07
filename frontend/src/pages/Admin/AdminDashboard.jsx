@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const AdminDashboard = () => {
-  const [usuarios, setUsuarios] = useState([])
+  const [usuario, setUsuario] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const fetchUsuarios = async () => {
+    const fetchUsuarioActual = async () => {
       try {
         const token = localStorage.getItem('token')
 
@@ -18,67 +18,82 @@ const AdminDashboard = () => {
           return
         }
 
-        const response = await axios.get('http://localhost:5000/api/users', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        // Obtener información del usuario actual
+        const response = await axios.get(
+          'http://localhost:5000/api/users/profile',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
 
-        // CORRECCIÓN: Los usuarios están en response.data.msg, no en response.data
-        if (response.data.ok && Array.isArray(response.data.data)) {
-          setUsuarios(response.data.data)
+        if (response.data.ok) {
+          setUsuario(response.data.data)
         } else {
-          setError('La respuesta no contiene un array válido de usuarios')
+          setError('No se pudo obtener la información del usuario')
         }
       } catch (err) {
         console.error('Error completo:', err)
         if (err.response?.status === 403) {
-          setError('Acceso denegado. Se requiere rol de administrador.')
+          setError('Acceso denegado.')
         } else if (err.response?.status === 401) {
           setError('Token inválido o expirado')
         } else {
-          setError('Error al obtener usuarios')
+          setError('Error al obtener información del usuario')
         }
       } finally {
         setLoading(false)
       }
     }
 
-    fetchUsuarios()
+    fetchUsuarioActual()
   }, [])
 
-  if (loading) return <p>Cargando usuarios...</p>
+  if (loading) return <p>Cargando...</p>
   if (error) return <p style={{ color: 'red' }}>{error}</p>
 
   return (
-    <div>
-      <h2>Lista de Usuarios</h2>
-      {usuarios.length === 0 ? (
-        <p>No se encontraron usuarios</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Rol</th>
-              <th>Usuario</th>
-              <th>Email</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuarios.map((user) => (
-              <tr key={user.uid}>
-                <td>{user.uid}</td>
-                <td>{user.name}</td>
-                <td>{user.role}</td>
-                <td>{user.email}</td>
-                <td>{user.is_active ? 'Activo' : 'Inactivo'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className='dashboardContainer'>
+      <h1>Panel de Administración</h1>
+
+      {usuario && (
+        <div className='dashboardCard'>
+          <div className='userAvatar'>
+            {usuario.name ? usuario.name.charAt(0).toUpperCase() : '?'}
+          </div>
+
+          <div className='userInfo'>
+            <h2>¡Bienvenido, {usuario.name}!</h2>
+            <div>
+              <strong>ID:</strong>
+              <span>{usuario.uid}</span>
+            </div>
+
+            <div className='userData'>
+              <strong>Nombre completo:</strong>
+              <span>{usuario.name}</span>
+            </div>
+
+            <div className='userData'>
+              <strong>Usuario:</strong>
+              <span>{usuario.email}</span>
+            </div>
+
+            <div className='rol'>
+              <strong>Rol:</strong>
+              <span
+                className={`role-badge ${
+                  usuario.role === 'admin'
+                    ? 'role-badge--admin'
+                    : 'role-badge--user'
+                }`}
+              >
+                {usuario.role}
+              </span>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

@@ -1,0 +1,90 @@
+.dashboardContainer {
+  padding: 20px;
+  font-family: 'Arial, sans-serif';
+}
+
+.dashboardContainer h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.dashboardCard {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.userAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 25px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.userInfo h2 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.userInfo div {
+  margin-bottom: 8px;
+}
+
+.userInfo div strong {
+  color: #666;
+}
+
+.userInfo div span {
+  margin-left: 10px;
+  color: #333;
+}
+
+.userData {
+  margin-bottom: 8px;
+}
+
+.userData strong {
+  color: #666;
+}
+
+.userData span {
+  margin-left: 10px;
+  color: #333;
+}
+
+.rol strong {
+  color: #666;
+}
+
+.role-badge {
+  margin-left: 10px;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.role-badge--admin {
+  background-color: #28a745;
+}
+
+.role-badge--user {
+  background-color: #17a2b8;
+}

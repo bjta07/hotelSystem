@@ -15,6 +15,7 @@ const RegisterUser = () => {
     message: '',
     success: false,
   })
+
   const [message, setMessage] = useState(null)
 
   const handleChange = (e) => {
