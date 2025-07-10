@@ -36,6 +36,9 @@ const Navbar = () => {
         {isUser && (
           <>
             <li>
+              <Link to='/user'>Dashboard</Link>
+            </li>
+            <li>
               <Link to='/user/reservas'>Reservas</Link>
             </li>
             <li>
